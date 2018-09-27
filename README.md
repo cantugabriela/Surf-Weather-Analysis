@@ -8,7 +8,7 @@ This Jupyter Notebook contains the climate analysis for precipitation and temper
 * Dataset date range from 01-01-2010 to 08-23-2017
 * SQLite Database Schema: 
 
-![Database Schema](Images\https://github.com/cantugabriela/Surf-Weather-Analysis/blob/master/Images/dbschema.PNG?raw=true)
+![Database Schema](https://github.com/cantugabriela/Surf-Weather-Analysis/blob/master/Images/dbschema.PNG?raw=true)
 
 
 
