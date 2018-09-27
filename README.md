@@ -1,3 +1,4 @@
+
 # Background 
 
 This Jupyter Notebook contains the climate analysis for precipitation and temperature in Honolulu, HI from 08-23-2017 to 08-23-2017 (last twelve months of data). It also looks at specific trip dates from 07-01-2016 to 07-14-2017 to model the climate temperature normals and precipitation based on historical weather data. 
@@ -7,7 +8,8 @@ This Jupyter Notebook contains the climate analysis for precipitation and temper
 * Dataset date range from 01-01-2010 to 08-23-2017
 * SQLite Database Schema: 
 
-![Database Schema](https://github.com/cantugabriela/Surf-Weather-Analysis/blob/master/Images/dbschema.PNG "Title")
+![Database Schema](Images\dbschema.png)
+
 
 
 # Observable Trends 
@@ -120,6 +122,7 @@ precipitation_df = precipitation_df.sort_values(by='date',ascending=True)
 # Use Pandas Plotting with Matplotlib to plot the data
 precipitation_df .plot(title="Precipitation (12 months)")
 plt.legend(loc='upper center')
+plt.savefig("Images/Precipitation.png")
 plt.show()
 
 ```
@@ -276,6 +279,7 @@ temperature_observations = pd.DataFrame(temperature_observations, columns=['temp
 # We need 12 bins since the observation is for twelve months
 temperature_observations.plot.hist(bins=12, title="Temperature vs. Frequency Histogram")
 plt.tight_layout()
+plt.savefig("Images/TemperaturevsFrequency.png")
 plt.show()
 ```
 
@@ -346,6 +350,7 @@ plt.xticks(np.arange(1, 1.0))
 plt.ylabel("Temp (F)")
 plt.tight_layout()
 plt.gca().legend_.remove()
+plt.savefig("Images/TripAvgTemp.png")
 plt.show()
 ```
 
@@ -629,6 +634,8 @@ daily_normals_df
 # Plot the daily normals as an area plot with `stacked=False`
 daily_normals_df.plot(kind='area', alpha=.2, stacked=False, x_compat=True, title="Aggregate Daily Normals for Trip Dates")
 plt.tight_layout()
+plt.savefig("Images/DailyNormals.png")
+plt.show()
 ```
 
 
