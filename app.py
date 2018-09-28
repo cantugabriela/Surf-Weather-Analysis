@@ -94,12 +94,9 @@ def precipitation():
     # Get the first element of the tuple
     max_date = max_date[0]
 
-    # Change to datetime object with correct format 
-    last_date = dt.datetime.strptime(max_date,"%Y-%m-%d")
-
     # Calculate the date 1 year ago from today
-    # The days are equal 366 so that the first day is included 
-    year_ago = last_date - dt.timedelta(days=366)
+    # The days are equal 366 so that the first day of the year is included
+    year_ago = dt.datetime.strptime(max_date, "%Y-%m-%d") - dt.timedelta(days=366)
     
     # Perform a query to retrieve the data and precipitation scores
     results_precipitation = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date >= year_ago).all()
@@ -132,12 +129,9 @@ def tobs():
     # Get the first element of the tuple
     max_date = max_date[0]
 
-    # Change to datetime object with correct format 
-    last_date = dt.datetime.strptime(max_date,"%Y-%m-%d")
-
     # Calculate the date 1 year ago from today
-    # The days are equal 366 so that the first day is included 
-    year_ago = last_date - dt.timedelta(days=366)
+    # The days are equal 366 so that the first day of the year is included
+    year_ago = dt.datetime.strptime(max_date, "%Y-%m-%d") - dt.timedelta(days=366)
     # Query tobs
     results_tobs = session.query(Measurement.date, Measurement.tobs).filter(Measurement.date >= year_ago).all()
 
@@ -151,7 +145,7 @@ def tobs():
 @app.route("/api/v1.0/<start>")
 def start(start=None):
 
-        # Docstring
+    # Docstring
     """Return a JSON list of tmin, tmax, tavg for the dates greater than or equal to the date provided"""
 
     from_start = session.query(Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start).group_by(Measurement.date).all()
@@ -162,7 +156,7 @@ def start(start=None):
 
 @app.route("/api/v1.0/<start>/<end>")
 def start_end(start=None, end=None):
-        # Docstring
+    # Docstring
     """Return a JSON list of tmin, tmax, tavg for the dates in range of start date and end date inclusive"""
     
     between_dates = session.query(Measurement.date, func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).group_by(Measurement.date).all()
