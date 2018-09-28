@@ -65,9 +65,8 @@ def welcome():
     <li>
     Return a JSON list of tmin, tmax, tavg for the dates greater than or equal to the date provided:
     <br>Replace &ltstart&gt with a date in Year-Month-Day format.
-    <br> For example: /api/v1.0/2017-01-01
     <br>
-    <a href="/api/v1.0/<start>">/api/v1.0/&ltstart&gt</a>
+    <a href="/api/v1.0/2017-01-01">/api/v1.0/2017-01-01</a>
     </li>
     <br>
     <li>
@@ -75,9 +74,8 @@ def welcome():
     <br>
     Replace &ltstart&gt and &ltend&gt with a date in Year-Month-Day format. 
     <br>
-    For example: /api/v1.0/2017-01-01/2017-01-07
     <br>
-    <a href="/api/v1.0/<start>/<end>">/api/v1.0/&ltstart&gt/&ltend&gt</a>
+    <a href="/api/v1.0/2017-01-01/2017-01-07">/api/v1.0/2017-01-01/2017-01-07</a>
     </li>
     <br>
     </ul>
@@ -100,7 +98,8 @@ def precipitation():
     last_date = dt.datetime.strptime(max_date,"%Y-%m-%d")
 
     # Calculate the date 1 year ago from today
-    year_ago = last_date - dt.timedelta(days=365)
+    # The days are equal 366 so that the first day is included 
+    year_ago = last_date - dt.timedelta(days=366)
     
     # Perform a query to retrieve the data and precipitation scores
     results_precipitation = session.query(Measurement.date, Measurement.prcp).filter(Measurement.date >= year_ago).all()
@@ -137,7 +136,8 @@ def tobs():
     last_date = dt.datetime.strptime(max_date,"%Y-%m-%d")
 
     # Calculate the date 1 year ago from today
-    year_ago = last_date - dt.timedelta(days=365)
+    # The days are equal 366 so that the first day is included 
+    year_ago = last_date - dt.timedelta(days=366)
     # Query tobs
     results_tobs = session.query(Measurement.date, Measurement.tobs).filter(Measurement.date >= year_ago).all()
 
